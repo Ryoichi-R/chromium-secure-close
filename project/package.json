@@ -1,0 +1,24 @@
+{
+    "name": "chromium-secure-close",
+    "version": "0.1.0-beta.1",
+    "private": true,
+    "description": "Local-first Manifest V3 extension that clears selected browsing data before closing Chromium windows.",
+    "license": "MIT",
+    "engines": {
+        "node": ">=22 <25"
+    },
+    "scripts": {
+        "build": "node scripts/build-icons.mjs",
+        "test": "vitest run --config vitest.config.ts",
+        "coverage": "vitest run --config vitest.config.ts --coverage --coverage.provider=v8",
+        "verify:extension": "pwsh -NoProfile -File scripts/verify-extension.ps1",
+        "verify:policy": "pwsh -NoProfile -Command \"Invoke-Pester -Path 'tests/integration/VerifyExtensionPolicy.Tests.ps1' -CI\"",
+        "verify:syntax": "node scripts/verify-syntax.mjs",
+        "verify:ledger": "vitest run --config vitest.ledger.config.ts",
+        "check": "npm run build && npm test && npm run coverage && npm run verify:extension && npm run verify:policy"
+    },
+    "devDependencies": {
+        "@vitest/coverage-v8": "3.2.7",
+        "vitest": "3.2.7"
+    }
+}

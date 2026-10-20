@@ -1,0 +1,29 @@
+# Dependencies
+project/node_modules/
+
+# Test and coverage output
+project/coverage/
+project/testResults.xml
+project/TestResults/
+
+# Build and run output
+project/bin/
+project/obj/
+project/artifacts/
+project/.work/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.local
+*.user
+*.suo
+.vscode/
+.idea/
+
+# Logs, temporary files, and OS metadata
+*.log
+*.tmp
+.DS_Store
+Thumbs.db

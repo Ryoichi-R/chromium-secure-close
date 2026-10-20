@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Secure Close 設定</title>
+  <link rel="stylesheet" href="./options.css">
+</head>
+<body>
+  <main>
+    <h1>Secure Close 設定</h1>
+    <p>パスワードは Chrome 144 以降、拡張機能から削除できません。この拡張機能はパスワードやブックマークを削除対象にしません。</p>
+    <section class="presets" aria-labelledby="preset-heading">
+      <h2 id="preset-heading">削除プリセット</h2>
+      <div class="preset-buttons" role="group" aria-label="削除プリセット">
+        <button type="button" data-preset="safe" aria-pressed="false">安全</button>
+        <button type="button" data-preset="standard" aria-pressed="false">標準</button>
+        <button type="button" data-preset="complete" aria-pressed="false">完全</button>
+      </div>
+      <p id="preset-label" class="hint">標準</p>
+    </section>
+    <fieldset id="data-types">
+      <legend>削除対象</legend>
+      <label><input type="checkbox" data-type="history"> 履歴</label>
+      <label><input type="checkbox" data-type="cache"> キャッシュ</label>
+      <label><input type="checkbox" data-type="cookies"> Cookie</label>
+      <label><input type="checkbox" data-type="downloads"> ダウンロード履歴</label>
+      <label><input type="checkbox" data-type="formData"> フォームデータ</label>
+      <label><input type="checkbox" data-type="cacheStorage"> Cache Storage</label>
+      <label><input type="checkbox" data-type="localStorage"> Local Storage</label>
+      <label><input type="checkbox" data-type="indexedDB"> IndexedDB</label>
+      <label><input type="checkbox" data-type="serviceWorkers"> Service Workers</label>
+      <label><input type="checkbox" data-type="fileSystems"> File Systems</label>
+    </fieldset>
+    <label for="since-mode">既定の期間</label>
+    <select id="since-mode">
+      <option value="all">全期間</option>
+      <option value="hour">過去1時間</option>
+      <option value="day">過去24時間</option>
+      <option value="week">過去1週間</option>
+    </select>
+    <label><input id="confirm-before-run" type="checkbox"> 実行前に確認する</label>
+    <section id="preserved-origins" aria-labelledby="preserved-heading">
+      <h2 id="preserved-heading">ログイン維持リスト</h2>
+      <p>登録したoriginのCookie・キャッシュ・サイトストレージを維持します。履歴・ダウンロード履歴・フォームデータは維持されません。</p>
+      <p class="hint">Cookieの維持範囲はregistrable domain全体に及ぶ場合があり、サブドメイン単位の完全な分離は保証されません。</p>
+      <div class="origin-entry">
+        <label for="origin-input">origin</label>
+        <input id="origin-input" type="text" placeholder="https://example.com" autocomplete="off">
+        <button id="add-origin" type="button">追加</button>
+      </div>
+      <p class="hint">国際化ドメインは安全のためpunycodeで表示される場合があります。</p>
+      <ul id="origin-list"></ul>
+    </section>
+    <section aria-labelledby="shortcut-heading">
+      <h2 id="shortcut-heading">キーボードショートカット</h2>
+      <p><code>Alt+Shift+C</code>は削除を始めずpopupを開きます。Chromeでは <code>chrome://extensions/shortcuts</code>、Braveでは <code>brave://extensions/shortcuts</code> から割当を変更できます。</p>
+    </section>
+    <button id="reset" type="button">既定値に戻す</button>
+    <section id="run-status" aria-live="polite">
+      <strong id="status-label">読み込み中…</strong>
+      <p id="status-summary"></p>
+      <ul id="reason-list"></ul>
+      <p id="error-message"></p>
+    </section>
+    <p id="message" role="status"></p>
+  </main>
+  <script type="module" src="./options.js"></script>
+</body>
+</html>

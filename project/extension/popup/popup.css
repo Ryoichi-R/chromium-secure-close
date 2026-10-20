@@ -1,0 +1,21 @@
+:root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+body { min-width: 340px; margin: 0; padding: 16px; background: Canvas; color: CanvasText; }
+main { display: grid; gap: 12px; }
+h1 { margin: 0; font-size: 20px; }
+h2 { margin: 0; font-size: 15px; }
+fieldset { display: grid; gap: 6px; border: 1px solid GrayText; border-radius: 6px; }
+label.inline { display: flex; gap: 6px; align-items: center; }
+select, button { min-height: 32px; font: inherit; }
+.actions { display: grid; gap: 8px; }
+button { cursor: pointer; }
+.preset-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.preset-buttons button[aria-pressed="true"] { outline: 2px solid Highlight; }
+.hint, .preserved-summary { margin: 0; font-size: 13px; }
+.preserved-summary button { min-height: 26px; margin-left: 6px; }
+.status { border: 1px solid GrayText; border-radius: 6px; padding: 8px; }
+.status.success { border-color: #2f855a; }
+.status.warning { border-color: #c05621; }
+.status p { margin: 4px 0; }
+.status ul { margin: 4px 0; padding-left: 20px; }
+.confirm { padding: 8px; border-left: 3px solid #c05621; }
+#message { min-height: 1.2em; }

@@ -1,0 +1,98 @@
+{
+    "schema_version": "1.0",
+    "public_root": ".",
+    "profiles": ["source-repository"],
+    "documents": [
+        {
+            "path": "README.md",
+            "required_sections": [
+                "概要",
+                "動作要件",
+                "インストール",
+                "使用方法",
+                "設定",
+                "アンインストール",
+                "既知の制限",
+                "ライセンス"
+            ]
+        },
+        {
+            "path": "LICENSE",
+            "required_sections": []
+        }
+    ],
+    "candidate": {
+        "allowlist": [
+            "README.md",
+            "LICENSE",
+            ".gitignore",
+            "release/preparation-policy.json",
+            "project/README.md",
+            "project/package.json",
+            "project/package-lock.json",
+            "project/vitest.config.ts",
+            "project/assets/**",
+            "project/extension/**",
+            "project/scripts/**",
+            "project/tests/**"
+        ],
+        "denylist": [
+            "project/coverage/coverage-summary.json",
+            "project/coverage/**",
+            "project/node_modules/**",
+            "project/testResults.xml",
+            "project/TestResults/**",
+            "project/bin/**",
+            "project/obj/**",
+            "project/artifacts/**",
+            "project/.work/**",
+            "project/_internal/**",
+            "project/tests/integration/acceptance_ledger_spec.js",
+            "**/*.log",
+            "**/*.tmp",
+            "**/*.local",
+            "**/.DS_Store",
+            "**/Thumbs.db"
+        ],
+        "max_file_bytes": 2097152,
+        "max_total_bytes": 10485760,
+        "allow_reparse_points": false
+    },
+    "validation": {
+        "required_receipt_types": [
+            "quality",
+            "manual-acceptance",
+            "clean-verification"
+        ],
+        "expected_test_projects": [
+            "chromium-secure-close-vitest",
+            "verify-extension-policy"
+        ],
+        "minimum_test_count": 83,
+        "allow_skips": false,
+        "minimum_line_coverage": 90,
+        "minimum_branch_coverage": null,
+        "require_formatter": true,
+        "require_linter": true,
+        "require_dependency_review": true
+    },
+    "manual_acceptance": [
+        {
+            "id": "chrome-dedicated-profile",
+            "requirement": "required",
+            "reason": "Chromeの専用プロファイルで削除対象、維持対象、ウィンドウ終了を確認する。"
+        },
+        {
+            "id": "brave-dedicated-profile",
+            "requirement": "required",
+            "reason": "Braveの専用プロファイルでChromeと同じ受入シナリオを確認する。"
+        }
+    ],
+    "artifacts": [],
+    "integrity": {
+        "require_hashes": false,
+        "require_sbom": false,
+        "require_dependency_review": true,
+        "require_clean_install": true
+    }
+}
