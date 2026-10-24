@@ -1,18 +1,81 @@
-:root { color-scheme: light dark; font-family: system-ui, sans-serif; }
-body { max-width: 680px; margin: 0 auto; padding: 24px; background: Canvas; color: CanvasText; }
-main { display: grid; gap: 12px; }
-h2 { margin: 0; font-size: 16px; }
-fieldset { display: grid; gap: 6px; border: 1px solid GrayText; border-radius: 6px; }
-select, button { min-height: 34px; font: inherit; }
-.preset-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.preset-buttons button[aria-pressed="true"] { outline: 2px solid Highlight; }
-.hint { margin: 4px 0; font-size: 13px; }
-.origin-entry { display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center; }
-#origin-list { display: grid; gap: 6px; margin: 0; padding-left: 20px; }
-#origin-list li { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
-#origin-list button { min-height: 28px; }
-#run-status { border: 1px solid GrayText; border-radius: 6px; padding: 8px; }
-#run-status.success { border-color: #2f855a; }
-#run-status.warning { border-color: #c05621; }
-#reason-list { margin: 4px 0; padding-left: 20px; }
-#message { min-height: 1.2em; }
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, sans-serif;
+}
+body {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 24px;
+  background: Canvas;
+  color: CanvasText;
+}
+main {
+  display: grid;
+  gap: 12px;
+}
+h2 {
+  margin: 0;
+  font-size: 16px;
+}
+fieldset {
+  display: grid;
+  gap: 6px;
+  border: 1px solid GrayText;
+  border-radius: 6px;
+}
+select,
+button {
+  min-height: 34px;
+  font: inherit;
+}
+.preset-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.preset-buttons button[aria-pressed='true'] {
+  outline: 2px solid Highlight;
+}
+.hint {
+  margin: 4px 0;
+  font-size: 13px;
+}
+.origin-entry {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+#origin-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 20px;
+}
+#origin-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+}
+#origin-list button {
+  min-height: 28px;
+}
+#run-status {
+  border: 1px solid GrayText;
+  border-radius: 6px;
+  padding: 8px;
+}
+#run-status.success {
+  border-color: #2f855a;
+}
+#run-status.warning {
+  border-color: #c05621;
+}
+#reason-list {
+  margin: 4px 0;
+  padding-left: 20px;
+}
+#message {
+  min-height: 1.2em;
+}

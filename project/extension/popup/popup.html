@@ -1,67 +1,100 @@
 <!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Secure Close</title>
-  <link rel="stylesheet" href="./popup.css">
-</head>
-<body>
-  <main>
-    <h1>Secure Close</h1>
-    <div class="actions">
-      <button id="run-close" type="button">削除して閉じる</button>
-      <button id="run-delete" type="button">削除のみ（閉じない）</button>
-      <button id="confirm-run" type="button" hidden>確認して実行</button>
-      <button id="cancel-run" type="button" hidden>キャンセル</button>
-    </div>
-    <p id="inline-confirm" class="confirm" hidden></p>
-    <section id="run-status" class="status" aria-live="polite">
-      <strong id="status-label">読み込み中…</strong>
-      <p id="status-summary"></p>
-      <ul id="reason-list"></ul>
-      <p id="error-message"></p>
-    </section>
-    <section class="presets" aria-labelledby="preset-heading">
-      <h2 id="preset-heading">削除プリセット</h2>
-      <div class="preset-buttons" role="group" aria-label="削除プリセット">
-        <button type="button" data-preset="safe" aria-pressed="false">安全</button>
-        <button type="button" data-preset="standard" aria-pressed="false">標準</button>
-        <button type="button" data-preset="complete" aria-pressed="false">完全</button>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Secure Close</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Secure Close</h1>
+      <div class="actions">
+        <button id="run-close" type="button">削除して閉じる</button>
+        <button id="run-delete" type="button">削除のみ（閉じない）</button>
+        <button id="confirm-run" type="button" hidden>確認して実行</button>
+        <button id="cancel-run" type="button" hidden>キャンセル</button>
       </div>
-      <p id="preset-label" class="hint">標準</p>
-      <p class="hint">安全はCookie・フォームデータ・詳細サイトストレージを削除しませんが、履歴・キャッシュ・ダウンロード履歴は削除します。</p>
-    </section>
-    <fieldset id="data-types">
-      <legend>削除するデータ</legend>
-      <label><input type="checkbox" data-type="history"> 履歴</label>
-      <label><input type="checkbox" data-type="cache"> キャッシュ</label>
-      <label><input type="checkbox" data-type="cookies"> Cookie</label>
-      <label><input type="checkbox" data-type="downloads"> ダウンロード履歴</label>
-      <label><input type="checkbox" data-type="formData"> フォームデータ</label>
-      <details>
-        <summary>詳細</summary>
-        <label><input type="checkbox" data-type="cacheStorage"> Cache Storage</label>
-        <label><input type="checkbox" data-type="localStorage"> Local Storage</label>
-        <label><input type="checkbox" data-type="indexedDB"> IndexedDB</label>
-        <label><input type="checkbox" data-type="serviceWorkers"> Service Workers</label>
-        <label><input type="checkbox" data-type="fileSystems"> File Systems</label>
-      </details>
-    </fieldset>
-    <label for="since-mode">期間</label>
-    <select id="since-mode">
-      <option value="all">全期間</option>
-      <option value="hour">過去1時間</option>
-      <option value="day">過去24時間</option>
-      <option value="week">過去1週間</option>
-    </select>
-    <label class="inline"><input id="confirm-before-run" type="checkbox"> 実行前に確認する</label>
-    <p class="preserved-summary">ログイン維持サイト: <span id="preserved-count">0</span>件
-      <button id="edit-preserved" type="button">編集</button>
-    </p>
-    <button id="acknowledge" type="button" hidden>状態を確認済みにする</button>
-    <p id="message" role="status"></p>
-  </main>
-  <script type="module" src="./popup.js"></script>
-</body>
+      <p id="inline-confirm" class="confirm" hidden></p>
+      <section id="run-status" class="status" aria-live="polite">
+        <strong id="status-label">読み込み中…</strong>
+        <p id="status-summary"></p>
+        <ul id="reason-list"></ul>
+        <p id="error-message"></p>
+      </section>
+      <section class="presets" aria-labelledby="preset-heading">
+        <h2 id="preset-heading">削除プリセット</h2>
+        <div class="preset-buttons" role="group" aria-label="削除プリセット">
+          <button type="button" data-preset="safe" aria-pressed="false">
+            安全
+          </button>
+          <button type="button" data-preset="standard" aria-pressed="false">
+            標準
+          </button>
+          <button type="button" data-preset="complete" aria-pressed="false">
+            完全
+          </button>
+        </div>
+        <p id="preset-label" class="hint">標準</p>
+        <p class="hint">
+          安全はCookie・フォームデータ・詳細サイトストレージを削除しませんが、履歴・キャッシュ・ダウンロード履歴は削除します。
+        </p>
+      </section>
+      <fieldset id="data-types">
+        <legend>削除するデータ</legend>
+        <label><input type="checkbox" data-type="history" /> 履歴</label>
+        <label><input type="checkbox" data-type="cache" /> キャッシュ</label>
+        <label><input type="checkbox" data-type="cookies" /> Cookie</label>
+        <label
+          ><input type="checkbox" data-type="downloads" />
+          ダウンロード履歴</label
+        >
+        <label
+          ><input type="checkbox" data-type="formData" /> フォームデータ</label
+        >
+        <details>
+          <summary>詳細</summary>
+          <label
+            ><input type="checkbox" data-type="cacheStorage" /> Cache
+            Storage</label
+          >
+          <label
+            ><input type="checkbox" data-type="localStorage" /> Local
+            Storage</label
+          >
+          <label
+            ><input type="checkbox" data-type="indexedDB" /> IndexedDB</label
+          >
+          <label
+            ><input type="checkbox" data-type="serviceWorkers" /> Service
+            Workers</label
+          >
+          <label
+            ><input type="checkbox" data-type="fileSystems" /> File
+            Systems</label
+          >
+        </details>
+      </fieldset>
+      <label for="since-mode">期間</label>
+      <select id="since-mode">
+        <option value="all">全期間</option>
+        <option value="hour">過去1時間</option>
+        <option value="day">過去24時間</option>
+        <option value="week">過去1週間</option>
+      </select>
+      <label class="inline"
+        ><input id="confirm-before-run" type="checkbox" />
+        実行前に確認する</label
+      >
+      <p class="preserved-summary">
+        ログイン維持サイト: <span id="preserved-count">0</span>件
+        <button id="edit-preserved" type="button">編集</button>
+      </p>
+      <button id="acknowledge" type="button" hidden>
+        状態を確認済みにする
+      </button>
+      <p id="message" role="status"></p>
+    </main>
+    <script type="module" src="./popup.js"></script>
+  </body>
 </html>

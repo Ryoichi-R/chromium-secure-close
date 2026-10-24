@@ -1,43 +1,66 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Chromium Secure Close Sentinel</title>
-  <link rel="stylesheet" href="/sentinel/cache.css">
-</head>
-<body>
-  <main>
-    <h1>Chromium Secure Close Sentinel</h1>
-    <p id="history-sentinel">history-sentinel-dummy</p>
+  <head>
+    <meta charset="utf-8" />
+    <title>Chromium Secure Close Sentinel</title>
+    <link rel="stylesheet" href="/sentinel/cache.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Chromium Secure Close Sentinel</h1>
+      <p id="history-sentinel">history-sentinel-dummy</p>
 
-    <form method="post" action="/sentinel/form-submit" autocomplete="on">
-      <label>
-        Form data sentinel
-        <input name="secure-close-form" value="dummy-form-value" autocomplete="on">
-      </label>
-      <button type="submit">Submit form sentinel</button>
-    </form>
+      <form method="post" action="/sentinel/form-submit" autocomplete="on">
+        <label>
+          Form data sentinel
+          <input
+            name="secure-close-form"
+            value="dummy-form-value"
+            autocomplete="on"
+          />
+        </label>
+        <button type="submit">Submit form sentinel</button>
+      </form>
 
-    <p><a href="/sentinel/download" download="secure-close-download.txt">Download file sentinel</a></p>
-    <p><img src="/sentinel/cache.svg" alt="cache sentinel"></p>
-    <p id="storage-sentinel-status">storage-sentinel-pending</p>
-  </main>
-  <script>
-    localStorage.setItem('secure-close-local-storage', 'dummy-local-storage-value');
-    const databaseRequest = indexedDB.open('secure-close-indexeddb', 1);
-    databaseRequest.onupgradeneeded = () => databaseRequest.result.createObjectStore('sentinel').put('dummy-indexeddb-value', 'value');
-    databaseRequest.onsuccess = () => {
-      databaseRequest.result.close();
-      document.getElementById('storage-sentinel-status').textContent = 'localStorage-indexedDB-ready';
-    };
-    if (globalThis.caches) {
-      caches.open('secure-close-cache-storage').then((cache) => cache.put(
-        '/sentinel/cache-entry',
-        new Response('dummy-cache-storage-value', { headers: { 'Content-Type': 'text/plain' } }),
-      )).then(() => {
-        document.getElementById('storage-sentinel-status').textContent += '-cacheStorage-ready';
-      });
-    }
-  </script>
-</body>
+      <p>
+        <a href="/sentinel/download" download="secure-close-download.txt"
+          >Download file sentinel</a
+        >
+      </p>
+      <p><img src="/sentinel/cache.svg" alt="cache sentinel" /></p>
+      <p id="storage-sentinel-status">storage-sentinel-pending</p>
+    </main>
+    <script>
+      localStorage.setItem(
+        'secure-close-local-storage',
+        'dummy-local-storage-value',
+      );
+      const databaseRequest = indexedDB.open('secure-close-indexeddb', 1);
+      databaseRequest.onupgradeneeded = () =>
+        databaseRequest.result
+          .createObjectStore('sentinel')
+          .put('dummy-indexeddb-value', 'value');
+      databaseRequest.onsuccess = () => {
+        databaseRequest.result.close();
+        document.getElementById('storage-sentinel-status').textContent =
+          'localStorage-indexedDB-ready';
+      };
+      if (globalThis.caches) {
+        caches
+          .open('secure-close-cache-storage')
+          .then((cache) =>
+            cache.put(
+              '/sentinel/cache-entry',
+              new Response('dummy-cache-storage-value', {
+                headers: { 'Content-Type': 'text/plain' },
+              }),
+            ),
+          )
+          .then(() => {
+            document.getElementById('storage-sentinel-status').textContent +=
+              '-cacheStorage-ready';
+          });
+      }
+    </script>
+  </body>
 </html>

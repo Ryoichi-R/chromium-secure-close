@@ -12,7 +12,9 @@ function collectFiles(directory) {
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
         const fullPath = join(directory, entry.name);
         if (entry.isDirectory()) files.push(...collectFiles(fullPath));
-        else if (sourceExtensions.has(entry.name.slice(entry.name.lastIndexOf('.'))))
+        else if (
+            sourceExtensions.has(entry.name.slice(entry.name.lastIndexOf('.')))
+        )
             files.push(fullPath);
     }
     return files;
@@ -20,7 +22,9 @@ function collectFiles(directory) {
 
 const files = sourceRoots
     .flatMap((root) => collectFiles(join(projectRoot, root)))
-    .sort((left, right) => relative(projectRoot, left).localeCompare(relative(projectRoot, right)));
+    .sort((left, right) =>
+        relative(projectRoot, left).localeCompare(relative(projectRoot, right)),
+    );
 
 const failures = [];
 for (const file of files) {
